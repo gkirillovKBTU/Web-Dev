@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ToDo List</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">ToDo List</header>
+
+  <div class="wrap">
+    <h1>ToDo List</h1>
+
+    <div class="add-row" role="region" aria-label="Add task">
+      <input id="todoInput" type="text" placeholder="New Task" aria-label="New Task" />
+      <button id="addBtn" type="button">Add</button>
+    </div>
+
+    <div class="todo-card" id="todoList">
+
+    </div>
+  </div>
+
+<script>
+  document.querySelectorAll('.chk input').forEach(function(cb){
+    cb.addEventListener('change', function(e){
+      if(cb.checked) cb.parentElement.classList.add('checked');
+      else cb.parentElement.classList.remove('checked');
+    });
+  });
+</script>
+
+<script src="scripts.js"></script>
+</body>
+</html>

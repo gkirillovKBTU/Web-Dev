@@ -1,0 +1,13 @@
+:host{
+    width: 100%;
+}
+
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 50px;
+    padding: 20px;
+    /* justify-items: center; */
+    width: 100%;
+    box-sizing: border-box;
+}

@@ -7,7 +7,11 @@ import { EXAMPLE_PRODUCTS } from '../api/ProductServiceAPI';
   providedIn: 'root',
 })
 export class ProductService {
-  getProducts(): Observable<ProductType[]> {
+  getProducts(categoryId?: number): Observable<ProductType[]> {
+    console.log("Passed categoryId", categoryId)
+    if(categoryId){
+      return of(EXAMPLE_PRODUCTS.filter(product => product.categoryId === categoryId || categoryId == 0))
+    }
     return of(EXAMPLE_PRODUCTS);
   }
 

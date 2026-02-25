@@ -1,4 +1,4 @@
-import {Component, computed, input} from '@angular/core';
+import {Component, computed, input, output} from '@angular/core';
 import { ProductType } from '../../types/product.model';
 import { DecimalPipe } from '@angular/common';
 import { shareProduct } from '../../utils/productFormatter';
@@ -14,7 +14,19 @@ import { shareProduct } from '../../utils/productFormatter';
         <h3 class="product-name">{{ product()?.name }}</h3>
         <p class="product-description">{{ product()?.description }}</p>
         <p class="product-price">{{ product()?.price | number }} KZT</p>
-        <p class="product-rating">⭐ {{ product()?.rating }}</p>
+        <div class="product-ratings">
+          <span class="product-rating">⭐ {{ product()?.rating }}</span>
+          <span class="product-likes">
+            <button class="like-btn" (click)="likeItem()">
+              @if(!liked){
+                <img alt="Liked heart" src="https://www.svgrepo.com/show/23218/black-heart.svg" decoding="async" width="16" height="16">
+              }@else {
+                <img alt="Unliked heart" src="https://www.svgrepo.com/show/407319/red-heart.svg" decoding="async" width="16" height="16">
+              }
+            </button>
+            {{ liked ? (product()?.likes ?? 0) + 1 : product()?.likes ?? 0 }}
+          </span>
+        </div>
         <a class="product-link" [href]="product()?.link" target="_blank">View on Kaspi.kz</a>
         <div class="share-block">
           <a class="share-link" [href]="shareUrls().telegramUrl" target="_blank">
@@ -25,6 +37,7 @@ import { shareProduct } from '../../utils/productFormatter';
           </a>
         </div>
       </div>
+      <button class="delete-btn" (click)="deleteItem()">X</button>
     </div>
   `,
   styleUrl: './products.css',
@@ -32,5 +45,15 @@ import { shareProduct } from '../../utils/productFormatter';
 })
 export class Product {
   product = input<ProductType>();
+  liked = false;
+  readonly deleteItemEvent = output<number>();
   shareUrls = computed(() => shareProduct(this.product()?.name ?? 'Unknown', this.product()?.link ?? 'Unknown'))
+
+  deleteItem() {
+    this.deleteItemEvent.emit(this.product()?.id ?? 0);
+  }
+
+  likeItem(){
+    this.liked = !this.liked;
+  }
 }

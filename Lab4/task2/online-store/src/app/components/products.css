@@ -1,6 +1,7 @@
 .product-card {
       display: flex;
       flex-direction: column;
+      position: relative;
       border: 2px solid #786e6e;
       border-radius: 10px;
       overflow: hidden;
@@ -81,4 +82,24 @@
 .share-block{
     display: flex;
     justify-content: space-between;
+}
+
+.delete-btn{
+    background-color: red;
+    color: #f9f9f9;
+    border-radius: 8px;
+    position: absolute;
+    top: 96%;
+    left: -1%;
+}
+
+.product-ratings{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.like-btn{
+    border: none;
+    background-color: transparent;
 }

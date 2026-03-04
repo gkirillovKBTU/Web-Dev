@@ -9,5 +9,6 @@ export const CATEGORIES: CategoryMapping = {
     Smartphones: {id: 1, name: "Smartphones"},
     Laptops: {id: 2, name: "Laptops"},
     Headphones: {id: 3, name: "Headphones"},
-    Computers: {id: 4, name: "Computers"}
+    Computers: {id: 4, name: "Computers"},
+    Clothing: {id: 5, name:"Clothing"}
 }

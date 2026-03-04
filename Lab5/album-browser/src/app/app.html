@@ -1,0 +1,26 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<div class="min-h-screen flex flex-col">
+  <header class="bg-white shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-2xl font-semibold">Album Browser</h1>
+      <nav class="space-x-3">
+        <a routerLink="/kirill" class="text-sm text-gray-600 hover:text-gray-900">Kirill</a>
+        <a routerLink="/" class="text-sm text-gray-600 hover:text-gray-900">Home</a>
+        <a routerLink="/albums" class="text-sm text-gray-600 hover:text-gray-900">Albums</a>
+        <a routerLink="/about" class="text-sm text-gray-600 hover:text-gray-900">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-5xl mx-auto px-4 py-8 w-full">
+    <router-outlet></router-outlet>
+  </main>
+</div>

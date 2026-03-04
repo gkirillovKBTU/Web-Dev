@@ -10,3 +10,8 @@ export interface ProductType {
   categoryId: number;
   likes: number;
 }
+
+export type CarouselImage = {
+  url: string;
+  alternativeName: string;
+}

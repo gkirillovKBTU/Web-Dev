@@ -1,0 +1,6 @@
+/* Tailwind entrypoint */
+@import "tailwindcss";
+
+/* Add any global overrides below */
+html, body { height: 100%; }
+body { @apply bg-gray-50 text-gray-800 font-sans; }

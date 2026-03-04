@@ -2,20 +2,30 @@ import {Component, computed, input, output} from '@angular/core';
 import { ProductType } from '../../types/product.model';
 import { DecimalPipe } from '@angular/common';
 import { shareProduct } from '../../utils/productFormatter';
+import { CarouselComponent } from './carouselImages';
 
 @Component({
   selector: 'product',
   template: `
     <div class="product-card">
       <div class="image-container">
-        <img [src]="product()?.image" [alt]="product()?.name" />
+        <app-carousel [images]="product()?.images ? [...product()?.images ?? []] : []"/>
+        
       </div>
       <div class="product-info">
         <h3 class="product-name">{{ product()?.name }}</h3>
         <p class="product-description">{{ product()?.description }}</p>
         <p class="product-price">{{ product()?.price | number }} KZT</p>
         <div class="product-ratings">
-          <span class="product-rating">⭐ {{ product()?.rating }}</span>
+          <span class="product-rating"> 
+            <div class="star-container">
+            <div class="star-back">★</div>
+              <div class="star-front" [style.height.%]="ratingPercent()">
+                <span>★</span>
+              </div>
+            </div>
+            {{ product()?.rating }}
+          </span>
           <span class="product-likes">
             <button class="like-btn" (click)="likeItem()">
               @if(!liked){
@@ -41,13 +51,15 @@ import { shareProduct } from '../../utils/productFormatter';
     </div>
   `,
   styleUrl: './products.css',
-  imports:[DecimalPipe]
+  imports:[DecimalPipe, CarouselComponent]
 })
 export class Product {
   product = input<ProductType>();
   liked = false;
   readonly deleteItemEvent = output<number>();
   shareUrls = computed(() => shareProduct(this.product()?.name ?? 'Unknown', this.product()?.link ?? 'Unknown'))
+
+  ratingPercent = computed(() => (this.product()?.rating ?? 0)/5.0 * 100)
 
   deleteItem() {
     this.deleteItemEvent.emit(this.product()?.id ?? 0);
